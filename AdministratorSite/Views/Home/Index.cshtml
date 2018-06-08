@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Trend - Dashboard";
+}
+@using Trend.DataModel;
+
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb" style="text-align:center;"> 
+			<a href="#" class="current" style="color:darkorchid;">@(new MvcHtmlString(ViewBag.CurrentSprintName))</a>
+        </div>
+    </div>
+    <!--End-breadcrumbs-->
+    <!--Action boxes-->
+    <div class="container-fluid">
+        <div class="quick-actions_homepage">
+            <ul class="quick-actions">
+                <li class="bg_lb"> <a href="#"> <i class="icon-dashboard" style="color:deeppink"></i> 
+					<span class="label label-info">@ViewBag.TotalStories</span> Total Stories </a> 
+				</li>
+				@*<li class="bg_ly"> <a href="#"><i class="icon icon-inbox"></i> 
+					<span class="label label-info">@ViewBag.TotalStoryPoints</span> Total Story Points</a> 
+				</li>*@
+                <li class="bg_lg"> <a href="#"> <i class="icon-signal"></i><span class="label label-success">@ViewBag.CompletedStories</span> Completed Stories</a> </li>
+                <li class="bg_lo"> <a href="~/TaskWall"> <i class="icon-th"></i><span class="label label-info">@ViewBag.TotalTaskSizes</span> Total Tasks (hour)</a> </li>
+                <li class="bg_lg"> <a href="~/TaskWall"> <i class="icon-fullscreen"></i><span class="label label-success">@ViewBag.TotalCompletedTaskSizes</span> Completed Tasks (hour)</a> </li>
+                <li class="bg_lr"> <a href="~/Home/Risk"> <i class="icon-info-sign"></i><span class="label label-important">@ViewBag.HighRiskStories</span> High Risk Stories</a> </li>
+				<li class="bg_lr"> <a href="~/Home/Risk"> <i class="icon-info-sign"></i><span class="label label-important">@ViewBag.HighRiskPerson</span> High Risk Members</a> </li>
+            </ul>
+        </div>   
+        <!--End-Action boxes-->
+        @{
+			var memberStateList = ViewBag.MemberState as List<MemberState>;
+        }
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="icon-star"></i> </span>
+                        <h5>Team Members (@memberStateList.Count)</h5>
+                    </div>
+                    <div class="widget-content">
+                        <ul class="thumbnails">
+                            @foreach (var memberState in memberStateList)
+							{
+								var imgName = memberState.Name + ".jpg";
+								string statusImg = memberState.StatusImg + ".png";
+
+								<li class="span1" style="width:50px;">
+									<div style="text-align:right">
+										<img src="~/Content/img/@statusImg" title="@memberState.StatusTip" alt="" style="width:40px;height:40px;">
+									</div>
+									<div style="background-color:@memberState.StatusColor">
+										<a href="@Url.Action("Index","TaskWall", new { name = memberState.Name })">
+											<img src="~/Content/img/person/@imgName" style="width:44px;height:44px;" title="@memberState.Detail" alt="@memberState.Name">
+										</a>
+									</div>
+								</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Chart-box-->
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"> <i class="icon-signal"></i> </span>
+                        <h5>Project Monitor</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div id="placeholder">
+                            <img src="/Chart/GetStoryChart" style="width:100%;height:100%" />
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div id="placeholder">
+                            <img src="/Chart/GetTaskChart" style="width:100%;height:100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End-Chart-box-->
+
+        <div class="row-fluid">
+            <div class="span6">
+                @Html.Action("StoryProgressView", "Home")
+            </div>
+            <div class="span6">                
+               @Html.Action("LatestCompletedTaskView", "Home")
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-repeat"></i></span>
+                        <h5>Recent Activities</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <ul class="activity-list">
+                            @foreach (var activity in ViewBag.RecentActivity as List<ActivityItem>)
+							{
+								string statusImg = activity.StatusImg + ".png";
+								string headImg = activity.Name + ".jpg";
+
+								<li>
+									<a href="#"> <i class="icon-user"></i>
+									<strong><img src="~/Content/img/person/@headImg" class="img-circle" style="width:22px;height:22px;" alt="@activity.Name"> @activity.Name</strong> 
+									updated 
+									<strong>@activity.EventObject</strong> <span>@activity.ReadableDateTime</span> 
+									</a>
+								</li>
+							}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@*<script language="JavaScript">
+		function RefreshDashBoard()
+		{
+			window.location.reload();
+		}
+	setTimeout('RefreshDashBoard()', 1000*60);
+</script>*@ 

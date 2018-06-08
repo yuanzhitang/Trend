@@ -1,0 +1,105 @@
+﻿@{
+	ViewBag.Title = "Discovery";
+}
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Discovery</a> </div>
+    <h1>Behavior Data Mining</h1>
+</div>
+<div class="container-fluid">
+    <hr>
+    <div class="widget-box widget-plain">
+
+    </div>
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"> <i class="icon-hand-right"></i> </span>
+            <h5>Personality Behavior Analysis </h5>
+        </div>
+        <div class="widget-content">
+            <ul class="stat-boxes2">
+                <li style="width:180px; background-color:antiquewhite; text-align:center;padding-bottom:10px;">
+					<div style="padding-top:10px;">
+						<img src="~/Content/img/Award/Industrious.png" >
+					</div>
+                    <div> 
+						<span style="color:green;font-size:14pt">Industrious Award</span><br />
+						<span style="color:green;font-size:10pt">最佳勤奋奖</span><br /> 
+
+						@{ 
+							var PersonOfIndustrious = ViewBag.PersonOfIndustrious as IEnumerable<string>;
+
+							if (PersonOfIndustrious.Any())
+							{
+								foreach (var person in PersonOfIndustrious)
+								{
+									string industImg = person + ".jpg";
+									<img src="~/Content/img/person/@industImg" class="img-circle" style="width:35px;height:35px;" title="@person" alt="@person" >
+								}
+							}
+							else
+							{
+								<span>No Winner</span>
+							}
+						}
+					</div>
+                </li>
+				<li style="width:180px; background-color:darksalmon; text-align:center;padding-bottom:10px;">
+					<div style="padding-top:10px;">
+						<img src="~/Content/img/Award/Warrior.png" style="width:50px;height:50px;">
+					</div>
+					<div>
+						<span style="color:darkorchid;font-size:14pt">Warrior Medal</span><br />
+						<span style="color:darkorchid;font-size:10pt">最佳突破奖</span><br />
+
+
+						@{
+							var PersonOfWarrior = ViewBag.PersonOfWarrior as IEnumerable<string>;
+
+							if (PersonOfWarrior.Any())
+							{
+								foreach (var person in PersonOfWarrior)
+								{
+									string warriorImg = person + ".jpg";
+									<img src="~/Content/img/person/@warriorImg" class="img-circle" style="width:35px;height:35px;" title="@person" alt="@person">
+								}
+							}
+							else
+							{
+								<span>No Winner</span>
+							}
+						}
+                    </div>
+				</li>              
+				<li style="width:180px; background-color:khaki; text-align:center;padding-bottom:10px;">
+					<div style="padding-top:10px;">
+						<img src="~/Content/img/Award/Silent.png" style="width:50px;height:50px;">
+					</div>
+					<div>
+						<span style="color:blue;font-size:14pt">Silent Award</span><br />
+						<span style="color:blue;font-size:10pt">最佳默默奖</span><br />
+						@{
+							var PersonOfSilent = ViewBag.PersonOfSilent as IEnumerable<string>;
+
+							if (PersonOfSilent.Any())
+							{
+								foreach (var person in PersonOfSilent)
+								{
+									string silentImg = person + ".jpg";
+									<img src="~/Content/img/person/@silentImg" class="img-circle" style="width:35px;height:35px;" title="@person" alt="@person">
+								}
+							}
+							else
+							{
+								<span>No Winner</span>
+							}
+						}
+					</div>
+				</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

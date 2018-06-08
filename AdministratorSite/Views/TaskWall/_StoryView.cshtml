@@ -1,0 +1,102 @@
+﻿@using Trend.DataModel;
+@using Trend.Common;
+
+@model List<TaskWallOfStory>
+
+@if(Model.Count==0)
+{
+	<span>No stories, Please go to TaskView. </span>
+}
+
+@foreach (var storyItem in Model)
+{
+	string ownEngName = NameUtil.ConvertToEngName(storyItem.Story.Owner);
+	string headImg = ownEngName + ".jpg";
+	string img = storyItem.Story.Type.ToString() + ".png";
+
+	<div class="span6">
+		<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"><img src="~/Content/img/@img" style="width:15px;height:15px;" title="@storyItem.Story.Type.ToString()" alt="@storyItem.Story.Type.ToString()"></span>
+					<span class="icon">
+						<img src="~/Content/img/person/@headImg" class="img-circle"  style="width:20px;height:20px;" title="@ownEngName" alt="@ownEngName">
+					</span>
+					<h5>
+							@if (storyItem.Story.IsComplete())
+							{
+								<s title="@storyItem.Story.Description">@storyItem.Story.GetBreifDesc()</s>
+                            }
+                            else
+                            {
+                                @storyItem.Story.GetBreifDesc()
+                                
+                                if(storyItem.Story.Status== StoryStatus.InProcess)
+                                {
+                                    <span style="color:blue">(In Progress)</span>
+                                }
+                                else if (storyItem.Story.Status == StoryStatus.Accepted || storyItem.Story.Status == StoryStatus.Done)
+                                {
+                                    <span style="color:green">(@storyItem.Story.Status)</span>
+                                }
+                                else
+                                {
+                                    <span style="color:gray">(@storyItem.Story.Status)</span>
+								}
+
+								<span style="font-size:8pt;font-weight:normal"> Size: @storyItem.Story.Size</span>
+							}
+					</h5>
+			</div>
+			<div class="widget-content nopadding">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Task</th>
+							<th>Owner</th>
+							<th>Left(H)</th>
+							<th class="text-center">Completion</th>
+						</tr>
+					</thead>
+					<tbody>
+						@if (storyItem.Tasks.Count == 0)
+						{
+							<tr>
+								<td colspan="4" style="text-align:center">No Tasks</td>
+							</tr>
+						}
+						else
+						{
+							foreach (var taskItem in storyItem.Tasks)
+							{
+								int percent = taskItem.Percent;
+								<tr>
+									@if (percent == 100)
+									{
+										<td><s style="color:grey">@taskItem.Task.ID : @taskItem.Task.Description</s></td>
+										<td style="text-align:center">@NameUtil.ConvertToEngName(taskItem.Task.Owner)</td>
+										<td style="text-align:center">0</td>
+										<td style="text-align:center">
+											<img src="~/Content/img/Done.png" alt="Done">
+										</td>
+									}
+									else
+									{
+										<td style="color:black">@taskItem.Task.ID : @taskItem.Task.Description</td>
+										<td style="text-align:center">@NameUtil.ConvertToEngName(taskItem.Task.Owner)</td>
+										<td style="text-align:center">@taskItem.Task.WorkToDo</td>
+										<td>
+											<div class='progress progress-mini progress-success' style='background-color:#E5E4E2;height:6px;margin-bottom:0;' title="@taskItem.Percent%">
+												<div style="width: @taskItem.Percent%; " class='bar'></div>
+											</div>
+											@*@taskItem.Percent%*@
+										</td>
+									}
+								</tr>
+							}
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+}

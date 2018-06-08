@@ -1,0 +1,104 @@
+﻿@{
+	ViewBag.Title = "Setting";
+}
+@using Trend.DataModel;
+@model Availability
+
+<div id="content-header">
+	<div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Setting</a> </div>
+	<h1>@Html.Action("GetTeamWorkingDaysTitle", "Settings")</h1>
+</div>
+<div class="container-fluid">
+	<hr>
+	<div class="row-fluid">
+		<div class="span6">
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"> <i class="icon-align-justify"></i> </span>
+					<h5>Team Leave Plan</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<form action="#" method="get" class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label">Michael:</label>
+							<div class="controls">
+								<input type="text" class="span11" placeholder="Leave Days" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Multiple Select input</label>
+							<div class="controls">
+								<select multiple>
+									<option>First option</option>
+									<option selected>Second option</option>
+									<option>Third option</option>
+									<option>Fourth option</option>
+									<option>Fifth option</option>
+									<option>Sixth option</option>
+									<option>Seventh option</option>
+									<option>Eighth option</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-actions">
+							<button type="submit" class="btn btn-success">Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+            </div>
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Holiday (China:0, Australia:0)</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form action="~/Settings/SavePublicHoliday" method="post" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" style="padding-left:10px;">
+                                <img src="~/Content/img/flag/China.png" style="width:30px;height:20px;" title="China" alt="">
+                                China Public Holiday:
+                            </label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.CTCHolidayStart, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                                ~
+                                @Html.EditorFor(model => model.CTCHolidayEnd, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                            </div>
+                            
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" style="padding-left:10px;">
+                                <img src="~/Content/img/flag/Australia.jpg" style="width:30px;height:20px;" title="ACUS" alt="">&nbsp;ACUS Public Holiday:
+                            </label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.ACUSHolidayStart, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                                ~
+                                @Html.EditorFor(model => model.ACUSHolidayEnd, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                            </div>
+                           
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" style="padding-left:10px;">
+                                <img src="~/Content/img/flag/unisys.png" style="width:50px;height:20px;" title="Unisys" alt="">&nbsp;Company Holiday:
+                            </label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.CompanyHolidayStart, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                                ~
+                                @Html.EditorFor(model => model.CompanyHolidayEnd, new { htmlAttributes = new { @class = "span5", @placeholder = "MM/dd/yyyy" } })
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+

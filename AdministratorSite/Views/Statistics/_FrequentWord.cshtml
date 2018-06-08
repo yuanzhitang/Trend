@@ -1,0 +1,125 @@
+﻿@using Trend.Common;
+@model List<Dictionary<string, int>>
+
+<style type="text/css">
+    .tag1 {
+        font-size: 0.7em
+    }
+
+    .tag2 {
+        font-size: 0.7em
+    }
+
+    .tag3 {
+        font-size: 0.7em
+    }
+
+    .tag4 {
+        font-size: 0.8em;
+        color:black
+    }
+
+    .tag5 {
+        font-size: 0.9em;
+        color:coral
+    }
+
+    .tag6 {
+        font-size: 1.0em;
+        font-style:italic;
+        color:darkorchid
+    }
+
+    .tag7 {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: blue;
+    }
+
+    .tag8 {
+        font-size: 2.0em;
+        font-weight:bold;
+        color:green
+    }
+
+    .tag9 {
+        font-size: 2.5em;
+        font-weight: bold;
+        color:black
+    }
+
+    .tag10 {
+        font-size: 4.0em;
+        font-weight: bold;
+        color: red
+    }
+    .tag11 {
+        font-size: 4.5em;
+        font-weight: bold;
+        color:rebeccapurple
+    }
+</style>
+
+ <div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"> <i class="icon-signal"></i> </span>
+        <h5>Word Cloud</h5>
+    </div>
+     <div class="widget-title">
+         <ul class="nav nav-tabs">
+             <li class="active"><a data-toggle="tab" href="#tab50">5.0</a></li>
+             <li><a data-toggle="tab" href="#tab40">4.0</a></li>
+             <li><a data-toggle="tab" href="#tab30">3.0</a></li>
+             <li><a data-toggle="tab" href="#tab20">2.0</a></li>
+             <li><a data-toggle="tab" href="#tab10">1.0</a></li>
+             <li><a data-toggle="tab" href="#tab00">All</a></li>
+         </ul>
+     </div>
+     <div class="widget-content tab-content">
+         <div id="tab50" class="tab-pane active">
+             <div class="pie">
+                 @foreach (var item in Model[0])
+                 {
+                     <span class="@CookieUtil.GetTagClass(item.Value)" title="Keyword:  @item.Key &#10;Occurs:  @item.Value">@item.Key &nbsp;</span>
+                 }
+             </div>
+
+         </div>
+         <div id="tab40" class="tab-pane">
+             <div class="pie">
+                 @foreach (var item in Model[1])
+                 {
+                     <span class="@CookieUtil.GetTagClass(item.Value)" title="Keyword:  @item.Key &#10;Occurs:  @item.Value">@item.Key &nbsp;</span>}
+             </div>
+
+         </div>
+         <div id="tab30" class="tab-pane">
+             <div class="pie">
+                 @foreach (var item in Model[2])
+                 {
+                     <span class="@CookieUtil.GetTagClass(item.Value)" title="Keyword:  @item.Key &#10;Occurs:  @item.Value">@item.Key &nbsp;</span>}
+             </div>
+
+         </div>
+         <div id="tab20" class="tab-pane">
+             <div class="pie">
+                 @foreach (var item in Model[3])
+                 {
+                     <span class="@CookieUtil.GetTagClass(item.Value)" title="Keyword:  @item.Key &#10;Occurs:  @item.Value">@item.Key &nbsp;</span>}
+             </div>
+
+         </div>
+         <div id="tab10" class="tab-pane">
+             <div class="pie">
+                 @foreach (var item in Model[4])
+                 {
+                     <span class="@CookieUtil.GetTagClass(item.Value)" title="Keyword:  @item.Key &#10;Occurs:  @item.Value">@item.Key &nbsp;</span>}
+             </div>
+
+         </div>
+         <div id="tab00" class="tab-pane">
+
+         </div>
+     </div>
+</div>
+               

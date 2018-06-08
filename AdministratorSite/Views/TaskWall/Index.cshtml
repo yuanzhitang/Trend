@@ -1,0 +1,81 @@
+﻿@{
+	ViewBag.Title = "Task Wall";
+}
+
+@model Dictionary<string, int>
+
+
+@{
+	var name = Request.QueryString["name"];
+	if (string.IsNullOrEmpty(name))
+	{
+		name = "";
+	}
+}
+
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Task Wall</a> </div>
+    <h1>@Html.Action("GetTaskWallTitle", "TaskWall")</h1>
+  </div>
+  <div class="container-fluid">
+    <hr>
+
+	<div class="widget-box">
+          <div class="widget-title">
+              <span class="icon"> <i class="icon-hand-right"></i> </span>
+              <h5>Statistics</h5>
+          </div>
+          <div class="widget-content">
+                  <ul class="stat-boxes2">
+                      <li>
+                          <div class="right"> <strong>@Html.Action("TotalTaskCount", "Statistics")</strong> Total Tasks </div>
+                      </li>
+                      <li>
+                          <div class="right"> <strong>@Html.Action("TotalCompletedTaskCount", "Statistics")</strong> Total Completed Tasks </div>
+                      </li>
+                      <li>
+                          <div class="right"> <strong style="color:green">@Html.Action("TotalCompletedTaskSize", "Statistics")</strong> Total  Completed Tasks (hour) </div>
+                      </li>
+                      <li>
+                          <div class="right"> <strong style="color:red">@Html.Action("TotalLeftTaskSize", "Statistics")</strong> Total  Remaining Tasks (hour) </div>
+                      </li>
+                  </ul>
+          </div>
+          <div class="widget-content">
+              <p>
+                  <button class="btn btn-info btn-mini">
+					<a href="@Url.Action("Index", new { name = "" })"><strong style="color:white">View All</strong></a>
+				  </button>
+
+                  @foreach (var itm in Model.OrderByDescending(t => t.Value))
+				  {
+					  if (name == itm.Key)
+					  {
+                        <button class="btn btn-warning  btn-mini"><a href="@Url.Action("Index", new { name = itm.Key })"><strong style="color:white">@itm.Key</strong>  (<span style="color:blue">@itm.Value</span> )</a></button>
+					  }
+					  else
+					  {
+                          <button class="btn  btn-mini"><a href="@Url.Action("Index", new { name = itm.Key })"><strong>@itm.Key</strong>  (<span style="color:blue">@itm.Value</span> )</a></button>
+					  }
+				  }
+              </p>
+          </div>
+      </div>
+	<div class="widget-box">
+  				<div class="widget-title">
+  					<ul class="nav nav-tabs">
+  						<li class="active"><a data-toggle="tab" href="#tab1">Story View</a></li>
+  						<li><a data-toggle="tab" href="#tab0">Task View</a></li>
+  					</ul>
+  				</div>
+  				<div class="widget-content tab-content">
+  					<div id="tab1" class="tab-pane active">
+						@Html.Action("StoryView", "TaskWall", new { personName = name })
+  					</div>
+  					<div id="tab0" class="tab-pane">
+					  	@Html.Action("TaskView", "TaskWall", new { personName = name })
+  					</div>
+  				</div>
+  	</div>
+</div>
+

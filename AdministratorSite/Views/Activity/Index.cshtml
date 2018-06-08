@@ -1,0 +1,58 @@
+﻿@{
+	ViewBag.Title = "Activity";
+}
+@using Trend.DataModel;
+@model List<PersonActivityItem>
+
+<div id="content-header">
+	<div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Activity</a> </div>
+	<h1>Activity</h1>
+</div>
+<div class="container-fluid">
+	<hr>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"><i class="icon-th"></i></span>
+					<h5>Activities</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered data-table">
+						<thead>
+							<tr>
+								@*<th style="width:15px;">ID</th>*@
+								<th style="width:150px;">Time</th>
+								<th style="width:150px;">Person</th>
+								<th>Detail</th>
+								@*<th>Comment</th>*@
+							</tr>
+						</thead>
+						<tbody>
+							@{int ID = @Model.Count; }
+							@foreach (var activity in Model)
+							{
+								string headImg = activity.Name + ".jpg";
+
+								<tr class="gradeX">
+									@*<td style="text-align:center">@ID</td>*@
+									<td style="text-align:center">@activity.Time</td>
+									<td style="padding-left:30px;">
+										<img src="~/Content/img/person/@headImg" class="img-circle" style="width:22px;height:22px;" alt="@activity.Name" />
+										@activity.Name
+									</td>
+									<td><pre>@activity.Activity</pre></td>
+									@*<td>@activity.Comment</td>*@
+								</tr>
+
+								ID--;
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

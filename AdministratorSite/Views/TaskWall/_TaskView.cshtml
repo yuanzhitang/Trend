@@ -1,0 +1,48 @@
+﻿@using Trend.DataModel;
+@using Trend.Common;
+
+@model List<List<TaskWallOfTask>>
+
+@foreach (var taskItems in Model)
+{
+	<div class="row-fluid">
+		@foreach (var taskItem in taskItems)
+		{
+		string ownEngName = NameUtil.ConvertToEngName(taskItem.Task.Owner);
+		string headImg = ownEngName + ".jpg";
+
+		<div class="span3">
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"> <i class="icon-list"></i> </span>
+					<span class="icon">
+						<img src="~/Content/img/person/@headImg" class="img-circle" style="width:20px;height:20px;" title="@ownEngName" alt="@ownEngName">
+					</span>
+					<h5>#@taskItem.Task.ID</h5>
+				</div>
+				@if (!taskItem.Task.IsComplete())
+				{
+					@*<div class="progress progress-mini progress-success" style="background-color:#E5E4E2;height:6px;margin-bottom:0;">
+						<div style="width:@taskItem.Percent%;" class="bar"></div>
+					</div>*@
+					<div style="text-align:right">
+						<span style="color:darkblue">@taskItem.Percent%</span>
+					</div>
+				}
+				<div class="widget-content">
+					@if (taskItem.Task.IsComplete())
+					{
+						<img src='./Content/img/Done.png' style="width:18px;height:18px;" alt='Done' title="Done">
+						<s style="color:grey">@taskItem.Task.Description</s>
+					}
+					else
+					{
+						<strong>@taskItem.Task.Description</strong>
+					}
+					<span> size:[@taskItem.Task.Estimate]</span>
+				</div>
+			</div>
+		</div>
+		}
+	</div>
+}

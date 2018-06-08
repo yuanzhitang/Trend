@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNameMapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<NameMapping>
+		<FullName>Chaosong Wang</FullName>
+		<Name>Chaosong</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Chengjie Xin</FullName>
+		<Name>Jeremy</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Shangjie Xin</FullName>
+		<Name>Sam</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Chenyu Wang</FullName>
+		<Name>Chen</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Congying Yuan</FullName>
+		<Name>Apple</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Lili Xu</FullName>
+		<Name>Dora</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>He Sun</FullName>
+		<Name>Richard</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Liurong Luo</FullName>
+		<Name>Ron</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Meghan Kerr</FullName>
+		<Name>Meghan</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Risto Keski-Frantti</FullName>
+		<Name>Risto</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Sha Cheng</FullName>
+		<Name>Alisa</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Xu Huang</FullName>
+		<Name>Aaron</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Yapeng Sun</FullName>
+		<Name>Allen</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Yifan Feng</FullName>
+		<Name>Ara</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Yuanzhi Tang</FullName>
+		<Name>Michael</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Zhonghui Zou</FullName>
+		<Name>Ben</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Jian Zhang</FullName>
+		<Name>Derek</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Yueling Ma</FullName>
+		<Name>Yueling</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Jasmine Lin</FullName>
+		<Name>Jasmine</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>John Ticehurst</FullName>
+		<Name>John</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Jingyi Xu</FullName>
+		<Name>Karen</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Ming Liu</FullName>
+		<Name>Mandy</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Tianning Bu</FullName>
+		<Name>Brenda</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Michael Harvey</FullName>
+		<Name>MikeH</Name>
+	</NameMapping>
+	<NameMapping>
+		<FullName>Not Assigned</FullName>
+		<Name>No Owner</Name>
+	</NameMapping>
+</ArrayOfNameMapping>

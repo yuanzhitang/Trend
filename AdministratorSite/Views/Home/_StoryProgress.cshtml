@@ -1,0 +1,34 @@
+﻿@using Trend.DataModel;
+@model List<StoryProgressItem>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon"><i class="icon-ok"></i></span>
+                        <h5>Stories In Progress  (@Model.Count)</h5>
+                    </div>
+                    <div class="widget-content">
+                        <ul class="unstyled">
+                            @foreach (var item in Model)
+                            {
+                                string typeImg = item.StoryType + ".png";
+                                string headImg = item.Owner + ".jpg";
+
+                                <li>
+                                    <span class="icon24 icomoon-icon-arrow-up-2 green"></span>
+                                    <img src="~/Content/img/person/@headImg" class="img-circle" style="width:18px;height:18px;" alt="@item.Owner" title="@item.Owner">
+                                    <img src="~/Content/img/@typeImg" style="width:15px;height:15px;" title="@item.StoryType">
+									&nbsp;
+                                    <a href="@Url.Action("Index","TaskWall", new { name = item.Owner })"><strong> @item.StoryDesc  </strong> @*- <span>@item.Owner</span>*@ </a>	
+									@*<span style="padding-left:10px;">
+										<img src="~/Content/img/person/@headImg" class="img-circle" style="width:15px;height:15px;" alt="@item.Owner" title="@item.Owner"> @item.Owner
+									</span>*@
+									<span class="pull-right strong">@item.Progress%</span>
+									<div class="progress progress-success progress-striped " style="height:12px">
+										<div style="width: @item.Progress%;" class="bar"></div>
+									</div>
+								</li>
+							}
+                        </ul>
+                    </div>
+                </div>
+               

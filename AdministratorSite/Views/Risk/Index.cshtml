@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Risk";
+}
+@using Trend.Common;
+@using Trend.DataModel;
+@model RiskSummaryData
+
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="#" class="current">Risk Assessment</a></div>
+        <h1>User Story & Member Risk Assessment</h1>
+    </div>
+    <!--End-breadcrumbs-->
+    <!--Action boxes-->
+    <div class="container-fluid">
+
+        <hr />
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title bg_lo" data-toggle="collapse" href="#collapseG3">
+                        <span class="icon"> <i class="icon-chevron-down"></i> </span>
+                        <h5>Stories at risk </h5>
+                        <span class="badge badge-important">@Model.StoryInHighRisk.Count</span>
+                    </div>
+                    <div class="widget-content nopadding updates collapse in" id="collapseG3">
+						@if (Model.StoryInHighRisk.Any())
+						{
+							foreach (var item in Model.StoryInHighRisk)
+							{
+								string engName = NameUtil.ConvertToEngName(item.Key.Owner);
+								string headImg = engName + ".jpg";
+								<div class="new-update clearfix">
+									<i class="icon-warning-sign"></i>
+									<div class="update-done"><a title="" href="#"><strong>@item.Key.Type.ToString() @item.Key.ID : @item.Key.Title</strong></a> <span>@item.Value</span> </div>
+									<div class="update-done"><a title="" href="#">&nbsp;&nbsp;<img src="~/Content/img/person/@headImg" class="img-circle" style="width:22px;height:22px;" title="@engName"></a></div>
+								</div>
+							}
+						}
+						else
+						{
+							<div class="new-update clearfix">
+								<div class="update-done"><span>No Records</span> </div>
+							</div>
+						}
+                    </div>
+                </div>
+
+				<div class="widget-box">
+					<div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2">
+						<span class="icon"><i class="icon-chevron-down"></i></span>
+						<h5>Members at risk </h5>
+						<span class="badge badge-warning">@Model.PersonInHighRisk.Count</span>
+					</div>
+					<div class="widget-content nopadding collapse in" id="collapseG2">
+						@if (Model.PersonInHighRisk.Any())
+						{
+							foreach (var item in Model.PersonInHighRisk)
+							{
+								string headImg = item.Owner + ".jpg";
+								<div class="new-update clearfix">
+									<i class="icon-warning-sign"></i>
+									<div class="update-done"><a title="@item.OwningStories" href="~/TaskWall?name=@item.Owner"><strong><img src="~/Content/img/person/@headImg" class="img-circle" style="width:25px;height:25px;" alt="@item.Owner"> @item.Owner</strong></a> <span>@item.RiskDetail</span> </div>
+								</div>
+							}
+						}
+						else
+						{
+							<div class="new-update clearfix">
+								<div class="update-done"><span>No Records</span> </div>
+							</div>
+						}
+					</div>
+				</div>
+
+               
+            </div>
+            <div class="span6">
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon"> <i class="icon-th"></i> </span>
+						<h5>Stories with exceptions</h5>
+						<span class="badge badge-warning">@Model.StoryInException.Count</span>
+					</div>
+					<div class="widget-content nopadding">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Owner</th>
+									<th>Item</th>
+									<th>Exception</th>
+									<th>Reason</th>
+								</tr>
+							</thead>
+							<tbody>
+								@if (Model.StoryInException.Any())
+                                {
+                                    foreach (var item in Model.StoryInException)
+                                    {
+                                        string exceptionImg = item.ExceptionImg + ".png";
+                                        string headImg = item.Owner + ".jpg";
+
+										<tr class="odd gradeX">
+											<td>
+												<div class="text-center">
+													<img src="~/Content/img/person/@headImg" class="img-circle"  style="width:22px;height:22px;" alt="@item.Owner">
+													<br /> @item.Owner
+												</div>
+											</td>
+											<td>
+												@item.Item
+											</td>
+											<td>
+												@item.ExceptionCategory
+                                                <img src="~/Content/img/exception/@exceptionImg" style="width:12px;height:12px;">
+                                                @if (item.Diff > 0)
+                                                {
+                                                    <span style="color:green"><strong>+@item.Diff</strong> day(s)</span>
+                                                }
+                                                else if(item.Diff<0)
+                                                {
+                                                    <span style="color:red"><strong>@item.Diff</strong> day(s)</span>
+                                                }
+											</td>
+											<td>@item.ExceptionDetail</td>
+										</tr>
+									}
+								}
+								else
+								{
+									<tr>
+										<td colspan="4" style="text-align:center">No Records</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon"> <i class="icon-th"></i> </span>
+						<h5>Tasks with exceptions</h5>
+						<span class="badge badge-warning">@Model.TaskInException.Count</span>
+					</div>
+					<div class="widget-content nopadding">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>Owner</th>
+									<th>Item</th>
+									<th>Exception</th>
+									<th>Reason</th>
+								</tr>
+							</thead>
+							<tbody>
+								@if (Model.TaskInException.Any())
+								{
+									foreach (var item in Model.TaskInException)
+									{
+										string exceptionImg = item.ExceptionImg + ".png";
+										string headImg = item.Owner + ".jpg";
+
+										<tr class="odd gradeX">
+											<td>
+												<div class="text-center">
+													<img src="~/Content/img/person/@headImg" class="img-circle" style="width:22px;height:22px;" alt="@item.Owner">
+													<br /> @item.Owner
+												</div>
+											</td>
+											<td>
+												@item.Item
+											</td>
+											<td>
+												@item.ExceptionCategory
+												<img src="~/Content/img/exception/@exceptionImg" style="width:12px;height:12px;">
+												@if (item.Diff > 0)
+												{
+													<span style="color:green">+@item.Diff day(s)</span>
+												}
+												else if (item.Diff < 0)
+												{
+													<span style="color:red">@item.Diff day(s)</span>
+												}
+											</td>
+											<td>@item.ExceptionDetail</td>
+										</tr>
+									}
+								}
+								else
+								{
+									<tr>
+										<td colspan="4" style="text-align:center">No Records</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+            </div>
+        </div>
+    </div>

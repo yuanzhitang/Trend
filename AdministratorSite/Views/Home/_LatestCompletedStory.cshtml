@@ -1,0 +1,20 @@
+﻿@using Trend.DataModel;
+@using Trend.Common;
+@model List<Story>
+
+<div class="widget-box">
+    <div class="widget-title bg_lo" data-toggle="collapse" href="#collapseG3">
+        <span class="icon"> <i class="icon-chevron-down"></i> </span>
+        <h5>Completed Stories  (@Model.Count)</h5>
+    </div>
+    <div class="widget-content nopadding updates collapse in" id="collapseG3">
+        @foreach (var story in Model)
+        {
+            <div class="new-update clearfix">
+                <i class="icon-ok-sign"></i>
+                <div class="update-done"><a title="" href="#"><strong>@story.Type.ToString() @story.ID : @story.Title</strong></a> <span>Owner: @NameUtil.ConvertToEngName(story.Owner)</span> </div>
+                <div class="update-date"><span class="update-day">@story.Modified.Day</span>@DateTimeUtil.ConvertToEngMonth(story.Modified.Month)</div>
+            </div>
+        }
+     </div>
+</div>

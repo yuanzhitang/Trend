@@ -1,0 +1,96 @@
+﻿@{
+	ViewBag.Title = "Prediction";
+}
+
+@using Trend.DataModel;
+@model IEnumerable<Story>
+
+<div id="content-header">
+	<div id="breadcrumb"> <a href="~/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Prediction of current Sprint</a> </div>
+	<h1>Prediction of current Sprint - Naive Bayes</h1>
+</div>
+<div class="container-fluid">
+	<hr>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"><i class="icon-th"></i></span>
+					<h5>Prediction of current Sprint</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered data-table">
+						<thead>
+							<tr>
+								<th style="width:100px;">Story ID</th>
+								<th style="width:350px;">Story Title</th>
+								<th style="width:100px;">Story Size</th>
+								<th>Story Owner</th>
+								<th>Success Rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var story in Model)
+							{
+								<tr class="gradeX">
+									<td style="text-align:left">@story.ID</td>
+									<td style="text-align:left">@story.Title</td>
+									<td style="text-align:left">
+										@story.Size
+									</td>
+									<td>@story.Owner</td>
+									<td>@story.PredicateSuccessRate</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="content-header">
+	<h1>Prediction of current Sprint - Logistics Regression</h1>
+</div>
+<div class="container-fluid">
+	<hr>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="widget-box">
+				<div class="widget-title">
+					<span class="icon"><i class="icon-th"></i></span>
+					<h5>Prediction of current Sprint</h5>
+				</div>
+				<div class="widget-content nopadding">
+					<table class="table table-bordered data-table">
+						<thead>
+							<tr>
+								<th style="width:100px;">Story ID</th>
+								<th style="width:350px;">Story Title</th>
+								<th style="width:100px;">Story Size</th>
+								<th>Story Owner</th>
+								<th>Success Rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var story in Model)
+							{
+								<tr class="gradeX">
+									<td style="text-align:left">@story.ID</td>
+									<td style="text-align:left">@story.Title</td>
+									<td style="text-align:left">
+										@story.Size
+									</td>
+									<td>@story.Owner</td>
+									<td>@story.LRPreSuccessRate</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
